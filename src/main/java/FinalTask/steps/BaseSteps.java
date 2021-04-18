@@ -1,7 +1,7 @@
-package Task4.steps;
+package FinalTask.steps;
 
 
-import Task4.util.TestProperties4;
+import FinalTask.util.TestPropertiesYandex;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import org.openqa.selenium.OutputType;
@@ -13,35 +13,30 @@ import ru.yandex.qatools.allure.annotations.Attachment;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class BaseTest4 {
+public class BaseSteps {
 
-    public static WebDriver getDriver() {
+    public static WebDriver getDriverYandex() {
         return driver;
     }
 
     public static WebDriver driver;
-    public static String baseUrl;
-    public static Properties properties = TestProperties4.getInstance().getProperties();
+    public static String baseUrlYandex;
+    public static Properties properties = TestPropertiesYandex.getInstance().getProperties();
 
     @Before
-    public static void setUp() throws Exception {
-
-        //Если закомментировать этот блок то тест запускается
-
+    public static void setUp() {
         System.setProperty("webdriver.chrome.driver", properties.getProperty("webdriver.chrome.driver"));
         driver = new ChromeDriver();
 
-        baseUrl = properties.getProperty("app.url");
-        System.out.println(baseUrl);
+        baseUrlYandex = properties.getProperty("final.url");
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        driver.get(baseUrl);
-
-        //Если закомментировать этот блок то тест запускается
+        driver.get(baseUrlYandex);
     }
 
+
     @After
-    public static void tearDown() throws Exception {
+    public static void tearDown() {
         driver.quit();
     }
 
